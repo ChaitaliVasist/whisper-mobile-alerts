@@ -8,7 +8,7 @@ export const Header = () => {
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-white text-xl font-semibold flex items-center gap-2">
           <MessageSquare className="w-6 h-6 text-green-500" />
-          WhatsApp
+          Whispr
         </h1>
         <div className="flex items-center gap-2">
           <button className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-colors">
