@@ -1,5 +1,5 @@
 
-# WhatsApp Clone - React Native with Capacitor
+# Whispr
 
 A full-featured WhatsApp-like messaging application built with React, Capacitor, and Firebase Cloud Messaging for real-time push notifications.
 
