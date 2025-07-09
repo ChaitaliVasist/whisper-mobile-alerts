@@ -2,7 +2,7 @@
 # Whispr
 
 A full-featured WhatsApp-like messaging application built with React, Capacitor, and Firebase Cloud Messaging for real-time push notifications.
-
+deployed link: https://whisper-mobile-alerts.lovable.app/
 ## Features
 
 ✅ **WhatsApp-like UI with Dark Theme**
