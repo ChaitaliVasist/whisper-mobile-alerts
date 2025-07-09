@@ -1,73 +1,221 @@
-# Welcome to your Lovable project
 
-## Project info
+# WhatsApp Clone - React Native with Capacitor
 
-**URL**: https://lovable.dev/projects/ae4e7579-4a09-46d0-aa87-09875efb850e
+A full-featured WhatsApp-like messaging application built with React, Capacitor, and Firebase Cloud Messaging for real-time push notifications.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+✅ **WhatsApp-like UI with Dark Theme**
+- Modern chat interface similar to WhatsApp
+- Dark theme for better user experience
+- Responsive design for mobile and desktop
 
-**Use Lovable**
+✅ **Real-time Push Notifications**
+- Firebase Cloud Messaging (FCM) integration
+- Background and foreground notifications
+- Custom notification sounds and icons
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ae4e7579-4a09-46d0-aa87-09875efb850e) and start prompting.
+✅ **Native Android Integration**
+- Custom Java/Kotlin modules for enhanced notifications
+- Native notification channels for Android 8.0+
+- Vibration patterns and LED notifications
 
-Changes made via Lovable will be committed automatically to this repo.
+✅ **Deep Linking Support**
+- Click notifications to open specific chats
+- URL-based deep linking
+- Custom scheme support (whatsappclone://)
 
-**Use your preferred IDE**
+✅ **Additional Features**
+- Local notification storage
+- Badge counts
+- Backend simulation for testing
+- Offline message queuing
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Setup Instructions
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 1. Initial Setup
 
-Follow these steps:
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd whatsapp-clone
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 2. Firebase Configuration
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Create a new Firebase project at https://console.firebase.google.com/
+2. Enable Firebase Cloud Messaging
+3. Get your Firebase config and replace the placeholder in `src/firebase/config.ts`:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```javascript
+const firebaseConfig = {
+  apiKey: "your-actual-api-key",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "your-sender-id",
+  appId: "your-app-id"
+};
+```
+
+4. Get your VAPID key from Firebase Console and update it in the config
+5. Update the FCM server key in `src/services/BackendSimulation.ts`
+
+### 3. Capacitor Setup
+
+```bash
+# Initialize Capacitor (if not already done)
+npx cap init
+
+# Add Android platform
+npx cap add android
+
+# Add iOS platform (optional)
+npx cap add ios
+```
+
+### 4. Android Setup
+
+1. **Update Firebase Configuration:**
+   - Download `google-services.json` from Firebase Console
+   - Place it in `android/app/` directory
+
+2. **Update Android Dependencies:**
+   Add to `android/app/build.gradle`:
+   ```gradle
+   dependencies {
+       implementation 'com.google.firebase:firebase-messaging:23.0.0'
+       implementation 'com.google.firebase:firebase-analytics:21.0.0'
+   }
+   ```
+
+3. **Add Firebase Plugin:**
+   Add to `android/build.gradle`:
+   ```gradle
+   dependencies {
+       classpath 'com.google.gms:google-services:4.3.13'
+   }
+   ```
+
+   Add to `android/app/build.gradle`:
+   ```gradle
+   apply plugin: 'com.google.gms.google-services'
+   ```
+
+### 5. Build and Run
+
+```bash
+# Build the project
+npm run build
+
+# Sync with Capacitor
+npx cap sync
+
+# Run on Android
+npx cap run android
+
+# Run on iOS (Mac only)
+npx cap run ios
+
+# For development with live reload
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 6. Testing Push Notifications
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Web Testing:**
+   - Open the app in your browser
+   - Allow notification permissions
+   - Use the built-in test notification feature
 
-**Use GitHub Codespaces**
+2. **Mobile Testing:**
+   - Install the app on your device
+   - Send test notifications using the backend simulation
+   - Test deep linking by clicking on notifications
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/           # UI Components
+│   ├── Header.tsx       # App header with search
+│   ├── ChatList.tsx     # Chat list sidebar
+│   └── ChatWindow.tsx   # Main chat interface
+├── hooks/               # Custom React hooks
+│   ├── useNotifications.ts  # Notification management
+│   └── useMobile.ts     # Mobile detection
+├── services/            # Business logic
+│   └── BackendSimulation.ts # Mock backend for testing
+├── firebase/            # Firebase configuration
+│   └── config.ts       # FCM setup
+├── utils/               # Utility functions
+│   └── DeepLinking.ts  # Deep link handling
+└── pages/               # Route components
+    └── Index.tsx       # Main application page
 
-This project is built with:
+android/
+├── app/src/main/java/com/whatsappclone/
+│   ├── MainActivity.java      # Main Android activity
+│   ├── NotificationService.java # FCM service
+│   └── AndroidManifest.xml   # Android configuration
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Key Technologies
 
-## How can I deploy this project?
+- **Frontend:** React + TypeScript + Tailwind CSS
+- **Mobile:** Capacitor for native mobile features
+- **Notifications:** Firebase Cloud Messaging (FCM)
+- **State Management:** React Hooks + TanStack Query
+- **Icons:** Lucide React
+- **Build Tool:** Vite
 
-Simply open [Lovable](https://lovable.dev/projects/ae4e7579-4a09-46d0-aa87-09875efb850e) and click on Share -> Publish.
+## Notification Flow
 
-## Can I connect a custom domain to my Lovable project?
+1. **Registration:** App registers with FCM and gets a token
+2. **Token Storage:** Token is sent to your backend server
+3. **Message Sending:** Backend sends notification via FCM API
+4. **Delivery:** FCM delivers to device
+5. **Handling:** Native service processes and displays notification
+6. **Deep Linking:** User clicks notification → opens specific chat
 
-Yes, you can!
+## Development Tips
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Use `npm run dev` for web development with hot reload
+- Use `npx cap run android --livereload` for mobile development
+- Check browser console for FCM tokens and errors
+- Test notifications on actual devices for best results
+- Use Android Studio logcat for debugging native modules
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Troubleshooting
+
+### Common Issues:
+
+1. **Notifications not working:**
+   - Check Firebase configuration
+   - Verify FCM server key
+   - Ensure app has notification permissions
+
+2. **Deep linking not working:**
+   - Check AndroidManifest.xml configuration
+   - Verify intent filters
+   - Test with `adb` commands
+
+3. **Build errors:**
+   - Clean and rebuild: `npx cap sync android`
+   - Check Android SDK and build tools versions
+   - Verify Firebase plugin configuration
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly on both web and mobile
+5. Submit a pull request
+
+## License
+
+MIT License - feel free to use this project for learning and development.
