@@ -8,7 +8,7 @@ interface NotificationPayload {
 
 class BackendSimulation {
   private static instance: BackendSimulation;
-  private fcmServerKey = 'your-fcm-server-key'; // Replace with your FCM server key
+  private fcmServerKey = 'AIzaSyArRv25XyWlVnqITJicgKVlwr6k-ICmZUc'; // Replace with your FCM server key
   private registeredTokens: string[] = [];
 
   static getInstance(): BackendSimulation {

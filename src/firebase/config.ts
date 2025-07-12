@@ -4,12 +4,13 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 // Your Firebase config - replace with your actual config
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "your-app-id"
+  apiKey: "AIzaSyArRv25XyWlVnqITJicgKVlwr6k-ICmZUc",
+  authDomain: "whisper-mobile-alerts.firebaseapp.com",
+  projectId: "whisper-mobile-alerts",
+  storageBucket: "whisper-mobile-alerts.firebasestorage.app",
+  messagingSenderId: "206482303576",
+  appId: "1:206482303576:web:fb578324ce80a9d25a782d",
+  measurementId: "G-5EVY78L7RQ"
 };
 
 // Initialize Firebase
@@ -26,7 +27,7 @@ export const requestNotificationPermission = async () => {
       
       // Get registration token
       const token = await getToken(messaging, {
-        vapidKey: 'your-vapid-key' // Replace with your VAPID key
+        vapidKey: 'BLgUSyTYU1rUdgKkUHxTIqC67uLlaEWFB-SsTQ_hWs11CFvmMLtSEWRjz6qAYBkuhBIQpBzh2i8wCitc-wqoPQA' // VAPID key
       });
       
       console.log('Registration token:', token);

@@ -1,0 +1,19 @@
+{
+  "appId": "app.lovable.ae4e75794a0946d0aa8709875efb850e",
+  "appName": "Whispr",
+  "webDir": "dist",
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#488AFF",
+      "sound": "beep.wav"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Whispr</string>
+    <string name="title_activity_main">Whispr</string>
+    <string name="package_name">app.lovable.ae4e75794a0946d0aa8709875efb850e</string>
+    <string name="custom_url_scheme">app.lovable.ae4e75794a0946d0aa8709875efb850e</string>
+</resources>

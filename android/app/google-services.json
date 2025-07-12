@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "206482303576",
+    "project_id": "whisper-mobile-alerts",
+    "storage_bucket": "whisper-mobile-alerts.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206482303576:android:47ed0675e32101f05a782d",
+        "android_client_info": {
+          "package_name": "app.lovable.ae4e75794a0946d0aa8709875efb850e"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD16injGAD3s9VSO7nhU8t7IhDPfKEGuCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
