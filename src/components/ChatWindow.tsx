@@ -29,7 +29,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 }) => {
   const [newMessage, setNewMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [callType, setCallType] = useState<'voice' | 'video' | null>(null);
+  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -53,14 +53,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     }
   };
 
-  const handleCall = (type: 'voice' | 'video') => {
-    setCallType(type);
-  };
 
-  const confirmCall = () => {
+  const confirmCall = (type: 'voice' | 'video') => {
     // Here you would integrate with your calling service
-    alert(`Starting ${callType} call with ${chat.name}...`);
-    setCallType(null);
+    alert(`Starting ${type} call with ${chat.name}...`);
   };
 
   return (
@@ -93,10 +89,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         </div>
         
         <div className="flex items-center gap-2">
-          <AlertDialog open={callType === 'voice'} onOpenChange={() => setCallType(null)}>
+          <AlertDialog>
             <AlertDialogTrigger asChild>
               <button 
-                onClick={() => handleCall('voice')}
                 className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-colors"
               >
                 <Phone className="w-5 h-5" />
@@ -114,7 +109,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                   Cancel
                 </AlertDialogCancel>
                 <AlertDialogAction 
-                  onClick={confirmCall}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    confirmCall('voice');
+                  }}
                   className="bg-green-600 hover:bg-green-700 text-white"
                 >
                   Call
@@ -123,10 +121,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             </AlertDialogContent>
           </AlertDialog>
 
-          <AlertDialog open={callType === 'video'} onOpenChange={() => setCallType(null)}>
+          <AlertDialog>
             <AlertDialogTrigger asChild>
               <button 
-                onClick={() => handleCall('video')}
                 className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-colors"
               >
                 <Video className="w-5 h-5" />
@@ -144,7 +141,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                   Cancel
                 </AlertDialogCancel>
                 <AlertDialogAction 
-                  onClick={confirmCall}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    confirmCall('video');
+                  }}
                   className="bg-green-600 hover:bg-green-700 text-white"
                 >
                   Call
